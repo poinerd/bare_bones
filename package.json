@@ -4,9 +4,13 @@
   "description": "learning backend systems",
   "license": "MIT",
   "author": "Emmanuel",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

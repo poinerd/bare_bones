@@ -1,4 +1,3 @@
-const {random} = require('./utils')
+import  {getPosts} from './postController.js'
 
-console.log("random number is", random())
-// console.log("Say hi function says", hello('Amanda') )
+console.log(getPosts())
