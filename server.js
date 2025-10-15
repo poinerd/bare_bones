@@ -1,22 +1,67 @@
-import http from 'http'
-let PORT = 8000
+import http from 'http';
+import { posts } from './postController.js';
+import fs from "fs"
+
+// fs.writeFile('note.txt', 'hello World', (err)=>{
+//     if(err) throw new Error('Error reading file')
+// })
 
 
-let contentPage =`
-<div>
-<h1> This is a page I love</h1>
-<button>Click this button</button>
-</div>
-`
 
-const server = http.createServer((req, res)=>{
-//    res.setHeader()
-//    res.write()
-   res.writeHead(500, {'Content-Type': 'application/json'})
-   res.end(JSON.stringify({'message': 'Server Error'}))
-})
+// fs.readFile('note.txt', 'utf-8', (err, data)=>{
+//     if(err){
+//         throw new Error('There was an error reading file')
+    
+//     } 
+    
+//     console.log("File content", data )
+    
+
+// })
+// fs.appendFile('note.txt', 'Welcome to my world', (err)=>{
+//     if(err) throw new Error('There was an error appending to file')
+// })
+
+// fs.unlink('note.txt', (err)=>{
+//     if(err) throw new Error('There was an error deleting file')
+// })
 
 
-server.listen(PORT, ()=>{
-    console.log(`Server is running om port ${PORT}....`)
-})
+const PORT = process.env.PORT;
+
+function getFullPage(po) {
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head><title>Posts</title></head>
+    <body>
+      ${po.map(post => `
+        <div>
+          <h1>${post.title}</h1>
+          <p>${post.id}</p>
+        </div>
+      `).join('')}
+    </body>
+    </html>
+  `;
+}
+
+const server = http.createServer((req, res) => {
+    // setHeader()
+    // write()
+    // 
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+//   console.log(req.url)
+//   console.log(req.method)
+if(req.url === '/about'){
+    res.end('<h1> This is the about page</h1>')
+    
+}else{
+  res.end(getFullPage(posts));
+}
+
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}...`);
+});
