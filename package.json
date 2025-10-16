@@ -5,9 +5,9 @@
   "license": "MIT",
   "author": "Emmanuel",
   "type": "module",
-  "main": "index.js",
+  "main": "severi.js",
   "scripts": {
-    "start": "nodemon --env-file=.env server.js",
+    "start": "nodemon --env-file=.env serveri.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
